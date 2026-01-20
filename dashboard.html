@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-header">
+    <h2>Hello, {{ user.username }}! </h2>
+    <p>Manage your files below.</p>
+</div>
+
+<div class="upload-section card color-1">
+    <h3>Upload a New File</h3>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.file() }}
+            {% for error in form.file.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        {{ form.submit(class="btn btn-primary") }}
+    </form>
+</div>
+
+<div class="files-section">
+    <h3>Your Files</h3>
+    {% if files %}
+        <div class="file-grid">
+            {% for file in files %}
+            <div class="file-card">
+                <div class="file-icon">📄</div>
+                <div class="file-name">{{ file.filename }}</div>
+                <div class="file-actions">
+                    <a href="{{ url_for('download_file', file_id=file.id) }}" class="btn-sm btn-success">Download</a>
+                    <a href="{{ url_for('delete_file', file_id=file.id) }}" class="btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="empty-state">No files uploaded yet. Start by uploading one!</p>
+    {% endif %}
+</div>
+{% endblock %}

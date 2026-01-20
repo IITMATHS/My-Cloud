@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero-section">
+    <h1>Welcome to Your Personal Secure Cloud</h1>
+    <p>Store your files safely, securely, and for free!</p>
+    <div class="actions">
+        <a href="{{ url_for('register') }}" class="btn btn-primary">Get Started</a>
+        <a href="{{ url_for('login') }}" class="btn btn-secondary">Login</a>
+    </div>
+    
+    <div class="features">
+        <div class="feature-card color-1">
+            <h3>🔒 Secure</h3>
+            <p>Your data is private and safe.</p>
+        </div>
+        <div class="feature-card color-2">
+            <h3>🎨 Colorful</h3>
+            <p>Enjoy a vibrant and fun interface.</p>
+        </div>
+        <div class="feature-card color-3">
+            <h3>🚀 Fast</h3>
+            <p>Upload and download files instantly.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
